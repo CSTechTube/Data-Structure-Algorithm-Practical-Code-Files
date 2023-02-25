@@ -1,0 +1,29 @@
+class mystack:
+    def __init__(self):
+        self.items=list()
+    def length(self):
+        return len(self.items)
+    def isempty(self):
+        return len(self.items) == 0
+    def show(self):
+        print(self.items)
+    def push(self,x):
+        self.items.append(x)
+    def pop(self):
+        if len(self.items) == 0:
+            print("Stack is empty,nothing to remove")
+        else:
+            return self.items.pop()
+def postfix_evaluate(exp):
+    stack = mystack()
+    for i in exp:
+        if i.isdigit():
+            stack.push(i)
+        else:
+            val1 = stack.pop()
+            val2 = stack.pop()
+            stack.push(str(eval(val2+i+val1)))
+    return int(stack.pop())
+exp = input("Enter the Postfix Expression:")
+ans = postfix_evaluate(exp)
+print("Evaluation result is: ",ans)

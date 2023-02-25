@@ -1,0 +1,49 @@
+import sys
+class item:
+    value=0
+    priority =0
+class PriorityQueue:
+    def __init__(self):
+        self.priority = [None] * 10000
+        self.size = 0
+    def enqueue(self,value,priority):
+        self.priority[self.size]=item()
+        self.priority[self.size].value = value
+        self.priority[self.size].priority = priority
+        self.size = self.size+1
+    def length(self):
+        return self.size
+    def peek(self):
+        highestpriority = -sys.maxsize
+        ind = -1
+        i=0
+        while i < self.size:
+            if(highestpriority < self.priority[i].priority):
+                highestpriority = self.priority[i].priority
+                ind = i
+            i=i+1
+        return ind
+    def dequeue(self):
+        ind = self.peek()
+        i = ind
+        while i < self.size:
+            self.priority[i] = self.priority[i+1]
+            i=i+1
+        self.size = self.size-1
+    def show(self):
+        i=0
+        while(i<self.size):
+            print(self.priority[i].value)
+            i=i+1
+pq = PriorityQueue()
+pq.enqueue(1,4)
+pq.enqueue(6,7)
+pq.enqueue(9,1)
+pq.enqueue(7,5)
+print("Elements of the PQ are:")
+pq.show()
+print("Size of the PQ is:",pq.length())
+print("Peek of the PQ is at index:",pq.peek())
+pq.dequeue()
+print("Elements of the PQ after dequeue are:")
+pq.show()

@@ -1,0 +1,14 @@
+def linear_search(data,target):
+    found = False
+    for i in range(len(data)):
+        if data[i] == target:
+            found=True
+    return found
+data_set = [78,9,56,23,1,89,5,27]
+element = int(input("Enter the element to be Searched:"))
+result = linear_search(data_set,element)
+if result == True:
+    print(element," found in Dataset")
+else:
+    print(element," not found in Dataset")
+    

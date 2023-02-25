@@ -1,0 +1,26 @@
+import datetime
+class myDate:
+    def __init__(self,date,month,year):
+        self.date=date
+        self.month=month
+        self.year=year
+    def show_date(self):
+        print("Date is:",self.date,"/",self.month,"/",self.year)
+    def show_day(self):
+        return self.date
+    def show_month(self):
+        return self.month
+    def show_year(self):
+        return self.year
+    def isleap(self):
+        return(self.year%4==0)
+    def day_of_week(self):
+        dat = datetime.date(self.year,self.month,self.date)
+        return dat.strftime("%w")
+my_day = myDate(1,7,22)
+my_day.show_date()
+print("Day is",my_day.show_day())
+print("Month is",my_day.show_month())
+print("Year is",my_day.show_year())
+print("Is leap year?",my_day.isleap())
+print("Day of week",my_day.day_of_week())

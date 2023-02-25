@@ -1,0 +1,35 @@
+class mystack:
+    def __init__(self):
+        self.items=list()
+    def length(self):
+        return len(self.items)
+    def isempty(self):
+        return len(self.items) == 0
+    def show(self):
+        print(self.items)
+    def push(self,x):
+        self.items.append(x)
+    def pop(self):
+        if len(self.items) == 0:
+            print("Stack is empty,nothing to remove")
+        else:
+            return self.items.pop()
+def balance_paren(s1):
+    stack = mystack()
+    for i in s1:
+        if i in "({[":
+            stack.push(i)
+        elif i in ")}]":
+            if stack.isempty():
+                return False
+            else:
+                left = stack.pop()
+                if(left == "{" and i != "}" or left == "[" and i != "]" or left == "(" and i != ")"):
+                    return False
+    return stack.isempty()
+exp = input("Enter the expression:")
+ans = balance_paren(exp)
+if ans == True:
+    print("Expression is Balanced")
+else:
+    print("Expression is not Balanced")

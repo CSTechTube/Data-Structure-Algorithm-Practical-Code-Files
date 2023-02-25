@@ -1,0 +1,49 @@
+class mystack:
+    def __init__(self):
+        self.items=list()
+    def length(self):
+        return len(self.items)
+    def isempty(self):
+        return len(self.items) == 0
+    def show(self):
+        print(self.items)
+    def push(self,x):
+        self.items.append(x)
+    def peek(self):
+        return self.items[len(self.items)-1]
+    def pop(self):
+        if len(self.items) == 0:
+            print("Stack is empty,nothing to remove")
+        else:
+            return self.items.pop()
+def infixtopostfix(infixexp):
+    stack = mystack()
+    postfixlist = []
+    prec = {}
+    prec["^"] = 5
+    prec["/"] = 4
+    prec["*"] = 4
+    prec["+"] = 2
+    prec["-"] = 2
+    prec["("] = 1
+
+    for i in infixexp:
+        if i.isalpha() or i.isdigit():
+            postfixlist.append(i)
+        elif i == '(':
+            stack.push(i)
+        elif i == ')':
+            toptoken = stack.pop()
+            while(toptoken != '('):
+                postfixlist.append(toptoken)
+                toptoken = stack.pop()
+        else:
+            while(not stack.isempty() and (prec[stack.peek()] >= prec[i])):
+                postfixlist.append(stack.pop())
+            stack.push(i)
+    while not stack.isempty():
+        postfixlist.append(stack.pop())
+    return "".join(postfixlist)
+exp = input("Enter the infix Expression:")
+ans = infixtopostfix(exp)
+print("Postfix expression is :",ans)

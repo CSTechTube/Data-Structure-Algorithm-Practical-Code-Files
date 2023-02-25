@@ -1,0 +1,43 @@
+class myBag:
+    def __init__(self):
+        self.items=list()
+    def size(self):
+        return len(self.items)
+    def add_item(self,a):
+        self.items.append(a)
+    def is_empty(self):
+        return (len(self.items)==0)
+    def show_elements(self):
+        print("Elements of Bag are:")
+        for x in self.items:
+            print(x)
+    def contains(self,i):
+        for x in self.items:
+            if x == i:
+                print("Bag contains ",i)
+                break
+            elif self.items.index(x) == len(self.items)-1:
+                print("Bag does not contains ",i)
+    def remove_item(self,i):
+        for x in self.items:
+            if x == i:
+                f=self.items.index(x)
+                self.items.pop(f)
+                print(i," removed from Bag")
+                break
+            elif self.items.index(x) == len(self.items)-1:
+                print("Bag does not contains ",i)
+bag = myBag()
+bag.add_item("Pencil")
+bag.add_item("Pen")
+bag.add_item("Eraser")
+bag.add_item("Ruler")
+bag.show_elements()
+print("Size of the bag is:",bag.size())
+print("Is bag Empty? ",bag.is_empty())
+bag.contains("Compass")
+bag.remove_item("Ruler")
+bag.show_elements()
+bag.remove_item("Tiffin")
+
+

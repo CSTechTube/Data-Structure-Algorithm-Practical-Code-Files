@@ -1,0 +1,47 @@
+import ctypes
+class Array2D:
+    def __init__(self,rows,cols):
+        self.rows=rows
+        self.cols=cols
+        self.size=self.rows*self.cols
+        pyArraytype = ctypes.c_int*self.size
+        self.elements = pyArraytype()
+    def length(self):
+        return self.size
+    def numrows(self):
+        return self.rows
+    def numcols(self):
+        return self.cols
+    def show_elements(self):
+        for i in range(self.size):
+            if (i+1)%self.cols == 0:
+                print(self.elements[i])
+            else:
+                print(self.elements[i],end=" ")
+    def setItem(self,position,value):
+        r=int(position[0])
+        c=int(position[1])
+        index=(r*self.rows)+c
+        self.elements[index]= value
+    def getItem(self,position):
+        r=int(position[0])
+        c=int(position[1])
+        index=(r*self.rows)+c
+        return self.elements[index]
+    def clear(self,value):
+        for i in range(self.size):
+            self.elements[i]=value
+arr2d = Array2D(2,2)
+arr2d.setItem("00",2)
+arr2d.setItem("01",5)
+arr2d.setItem("10",6)
+arr2d.setItem("11",10)
+print("Elements of 2D array are:")
+arr2d.show_elements()
+print("Length of Array is",arr2d.length())
+print("Number of rows :",arr2d.numrows())
+print("Number of columns :",arr2d.numcols())
+print("Item at 00 position",arr2d.getItem("00"))
+arr2d.clear(3)
+print("Elements of 2D array after clear():")
+arr2d.show_elements()

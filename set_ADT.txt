@@ -1,0 +1,90 @@
+class set:
+    def __init__(self):
+        self.elements=[]
+    def length(self):
+        return len(self.elements)
+    def isempty(self):
+        return len(self.elements)==0
+    def display(self):
+        for x in self.elements:
+            print(x)
+    def contains(self,x):
+        found=False
+        for i in self.elements:
+            if i == x:
+                found=True
+                break
+        return found
+    def addItem(self,x):
+        found=False
+        for i in self.elements:
+            if i == x:
+                found=True
+                break
+        if found==False:
+             self.elements.append(x)
+        else:
+            print(x,"already exists in the set")
+    def removeItem(self,x):
+        found=False
+        for i in self.elements:
+            if i == x:
+                found=True
+                break
+        if found==False:
+            print(x,"cannot be deleted as it is not present in the set")
+        else:
+            f = self.elements.index(x)
+            self.elements.pop(f)
+            print(x,"removed successfully from set")
+    def union(self,A):
+        union=[]
+        for x in self.elements:
+            union.append(x)
+        for y in A.elements:
+            if y not in union:
+                union.append(y)
+        return union
+    def intersect(self,A):
+        intersect=[]
+        for y in self.elements:
+            if y in A.elements:
+                intersect.append(y)
+        return intersect
+    def differ(self,A):
+        differ=[]
+        for y in self.elements:
+            if y not in A.elements:
+                differ.append(y)
+        return differ
+    def subset(self,A):
+        x=A.length()
+        count=0
+        for y in A.elements:
+            if y in self.elements:
+                count=count+1
+        if x==count:
+            print("It is a subset")
+        else:
+            print("It is not a subset")
+a = set()
+a.addItem(1)
+a.addItem(55)
+a.addItem(35)
+a.addItem(14)
+a.display()
+print("Length of the Set:",a.length())
+print("Is set Empty?:",a.isempty())
+print("Does set contains 35?",a.contains(35))
+#a.removeItem(1)
+#print("Set items after removal of 1")
+#a.display()
+b = set()
+b.addItem(24)
+b.addItem(1)
+b.addItem(14)
+b.addItem(63)
+print("Union is:",a.union(b))
+print("Intersection is:",a.intersect(b))
+print("Difference is:",a.differ(b))
+a.subset(b)

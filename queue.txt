@@ -1,0 +1,32 @@
+class myqueue:
+    def __init__(self):
+        self.element = []
+    def size(self):
+        return len(self.element)
+    def isempty(self):
+        return len(self.element) == 0
+    def enqueue(self,x):
+        self.element.append(x)
+    def show(self):
+        for x in self.element:
+            print(x)
+    def dequeue(self):
+        if len(self.element) == 0:
+            return False
+        else:
+            return self.element.pop(0)
+queue = myqueue()
+queue.enqueue("Shirts")
+queue.enqueue("Ties")
+queue.enqueue("Pants")
+queue.enqueue("Blazor")
+print("Elements of the Queue are:")
+queue.show()
+print("Length of th queue is :",queue.size())
+print("Is queue Empty ? :",queue.isempty())
+print(queue.dequeue())
+print("Elements of queue after calling dequeue():")
+queue.show()
+print(queue.dequeue())
+print("Elements of queue after calling dequeue():")
+queue.show()

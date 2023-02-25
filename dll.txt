@@ -1,0 +1,128 @@
+class Node:
+    def __init__(self,data):
+        self.data=data
+        self.prev=None
+        self.next=None
+    def getData(self):
+        return self.data
+    def getPrev(self):
+        return self.prev
+    def getNext(self):
+        return self.next
+    def setData(self,newdata):
+        self.data=newdata
+    def setPrev(self,newprev):
+        self.prev=newprev
+    def setNext(self,newnext):
+        self.next=newnext
+class DLL:
+    def __init__(self):
+        self.head=None
+    def isEmpty(self):
+        return self.head == None
+    def add(self,data):
+        new_node = Node(data)
+        new_node.next = self.head
+        new_node.prev = None
+        if self.head is not None:
+            self.head.prev = new_node
+        self.head = new_node
+    def append(self,data):
+        new_node = Node(data)
+        new_node.next = None
+        last = self.head
+        if self.head is None:
+            new_node.prev = None
+            self.head = new_node
+            return
+        while(last.next is not None):
+            last = last.next
+        last.next = new_node
+        new_node.prev = last
+    def insertAfter(self,data,previousnode):
+        if previousnode is None:
+            print("No such node found")
+            return
+        current = self.head
+        found = False
+        prev_node=None
+        while(current != None and not found):
+            if current.getData()== previousnode:
+                found= True
+                prev_node=current
+            else:
+                current = current.next
+        new_node = Node(data)
+        new_node.next = prev_node.next
+        prev_node.next = new_node
+        new_node.prev = prev_node
+        if new_node.next is not None:
+            new_node.next.prev = new_node
+    def insertBefore(self,nextnode,data):
+        if nextnode is None:
+            print("No such node found")
+            return
+        current = self.head
+        found = False
+        next_node=None
+        while(current != None and not found):
+            if current.getData()== nextnode:
+                found= True
+                next_node=current
+            else:
+                current = current.next
+        new_node = Node(data)
+        new_node.prev = next_node.prev
+        next_node.prev = new_node
+        new_node.next = next_node
+        if new_node.prev is not None:
+            new_node.prev.next = new_node
+    def display(self):
+        current = self.head
+        while(current != None):
+            print(current.getData())
+            current = current.next
+    def removeNode(self,node):
+        if self.head is None or node is None:
+            print("Error in Deleting")
+            return
+        current = self.head
+        found = False
+        del_node=None
+        while(current != None and not found):
+            if current.getData()== node:
+                found= True
+                del_node=current
+            else:
+                current = current.next
+        if found==False:
+            print("No such node found in DLL")
+            return
+        else:
+            if self.head == del_node:
+                self.head = del_node.next
+            if del_node.next is not None:
+                del_node.next.prev = del_node.prev
+            if del_node.prev is not None:
+                del_node.prev.next = del_node.next
+dll = DLL()
+dll.add(1)
+dll.add(12)
+dll.add(8)
+dll.append(2)
+dll.insertAfter(5,2)
+dll.insertBefore(5,4)
+dll.display()
+print("Is List Empty?",dll.isEmpty())
+dll.removeNode(12)
+print("Nodes after removl:")
+dll.display()
+                
+            
+        
+                
+                
+        
+        
+        
+        

@@ -1,0 +1,32 @@
+class mystack:
+    def __init__(self):
+        self.items=list()
+    def length(self):
+        return len(self.items)
+    def isempty(self):
+        return len(self.items) == 0
+    def show(self):
+        print(self.items)
+    def push(self,x):
+        self.items.append(x)
+    def pop(self):
+        if len(self.items) == 0:
+            print("Stack is empty,nothing to remove")
+        else:
+            return self.items.pop()
+def dtobConvert(s):
+    digit = int(s)
+    stack = mystack()
+    while digit > 0:
+        rem = digit%2
+        digit = digit//2
+        stack.push(str(rem))
+    binary=""
+    l=stack.length()
+    k=0
+    while k < l:
+        binary=binary+stack.pop()
+        k=k+1
+    return binary
+n=int(input("Enter the decimal no.:"))
+print("Binary number is:",dtobConvert(n))

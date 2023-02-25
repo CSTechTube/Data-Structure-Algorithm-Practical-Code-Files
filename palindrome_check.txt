@@ -1,0 +1,34 @@
+class mystack:
+    def __init__(self):
+        self.items=list()
+    def length(self):
+        return len(self.items)
+    def isempty(self):
+        return len(self.items) == 0
+    def show(self):
+        print(self.items)
+    def push(self,x):
+        self.items.append(x)
+    def pop(self):
+        if len(self.items) == 0:
+            print("Stack is empty,nothing to remove")
+        else:
+            return self.items.pop()
+def reverse(s):
+    stack = mystack()
+    for i in s:
+        stack.push(i)
+    reversed_string=""
+    l=stack.length()
+    k=l-1
+    while k>=0:
+        reversed_string=reversed_string+stack.pop()
+        k=k-1
+    return reversed_string
+name = input("Enter the string:")
+print("Original string:",name)
+print("Reversed String:",reverse(name))
+if name == reverse(name):
+    print(name," is palindrome")
+else:
+    print(name," is not palindrome")

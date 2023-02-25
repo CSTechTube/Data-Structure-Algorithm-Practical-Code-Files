@@ -1,0 +1,51 @@
+import ctypes
+class Array_1D:
+    def __init__(self,size):
+        if size>0:
+            self.size=size
+            pyArrayType=ctypes.c_int*self.size
+            self.elements=pyArrayType()
+    def length(self):
+        return self.size
+    def setItem(self,index,element):
+        if index >=0 and index < self.size:
+            self.elements[index]=element
+    def getItem(self,index):
+        return self.elements[index]
+    def clear(self,value):
+        for i in range(self.size):
+            self.elements[i]=value
+    def sum(self):
+        sum=0
+        for i in range(self.size):
+            sum=sum+self.elements[i]
+        return sum
+    def average(self):
+        sum=0
+        for i in range(self.size):
+            sum=sum+self.elements[i]
+        avg = sum // self.size
+        return avg
+    def count_positive(self):
+        count=0
+        for i in range(self.size):
+            if self.elements[i] > 0:
+                count=count+1
+        return count
+    def show_elements(self):
+        for i in range(self.size):
+            print(self.elements[i])
+arr = Array_1D(4)
+arr.setItem(0,1)
+arr.setItem(1,3)
+arr.setItem(2,-2)
+arr.setItem(3,6)
+arr.show_elements()
+print("Element at 2 position:",arr.getItem(2))
+print("Length of Array is: ",arr.length())
+print("Total no. of Positive elements:",arr.count_positive())
+print("Sum of Array Elements :",arr.sum())
+print("Average of Array Elements:",arr.average())
+arr.clear(4)
+print("Elements of Array after clear()")
+arr.show_elements()
