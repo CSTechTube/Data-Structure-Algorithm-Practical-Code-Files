@@ -1,0 +1,22 @@
+def binary_search(data,target):
+    l = len(data)-1
+    low = 0
+    high = l
+    found = False
+    while low<=high and not found:
+        mid = (low+high)//2
+        if target<data[mid]:
+            high = mid-1
+        elif target >data[mid]:
+            low = mid+1
+        elif target == data[mid]:
+            found = True
+    return found
+data = [9,10,45,59,68,101]
+target = int(input("Enter the data element to Find:"))
+result = binary_search(data,target)
+if result == True:
+    print(target," exists in the data set")
+else:
+    print(target," doesn't esists in the dataset")
+        
