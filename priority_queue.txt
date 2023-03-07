@@ -41,7 +41,7 @@ pq.enqueue(6,7)
 pq.enqueue(9,1)
 pq.enqueue(7,5)
 print("Elements of the PQ are:")
-pq.show()
+pq.show()nbnbn
 print("Size of the PQ is:",pq.length())
 print("Peek of the PQ is at index:",pq.peek())
 pq.dequeue()
