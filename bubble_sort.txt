@@ -1,0 +1,13 @@
+def bubble_sort(data,size):
+    temp = 0
+    for i in range(0,size-1):
+        for j in range(i+1,size):
+            if data[i] < data[j]:
+                temp = data[j]
+                data[j]=data[i]
+                data[i]=temp
+    return data
+marks = [21,3,9,2,10,45]
+print("Unsorted Dataset:",marks)
+sorted_data = bubble_sort(marks,len(marks))
+print("Sorted Dataset in Descending Order:",sorted_data)
