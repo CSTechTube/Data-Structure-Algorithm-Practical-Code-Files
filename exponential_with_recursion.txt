@@ -1,0 +1,8 @@
+def exponential(m,n):
+    if n==1:
+        return m*n
+    else:
+        return m*exponential(m,n-1)
+print("5 to the power 3 is ",exponential(5,3))
+print("2 to the power 2 is ",exponential(2,2))
+print("4 to the power 4 is ",exponential(4,4))
