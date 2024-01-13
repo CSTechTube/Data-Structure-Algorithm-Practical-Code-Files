@@ -1,0 +1,43 @@
+class binaryTree:
+    def __init__(self,rootval):
+        self.left = None
+        self.right = None
+        self.rootval = rootval
+    def getLeftNode(self):
+        return self.left
+    def getRightNode(self):
+        return self.right
+    def getRootValue(self):
+        return self.rootval
+    def insertLeftNode(self,value):
+        if self.left == None:
+            self.left = binaryTree(value)
+        else:
+            newNode = binaryTree(value)
+            newNode.left = self.left
+            self.left = newNode
+    def insertRightNode(self,value):
+        if self.right == None:
+            self.right = binaryTree(value)
+        else:
+            newNode = binaryTree(value)
+            newNode.right = self.right
+            self.right=newNode
+def printBinaryTree(tree):
+    s = ""
+    if tree:
+        s = "("+printBinaryTree(tree.getLeftNode())
+        s = s + str(tree.getRootValue())
+        s = s + printBinaryTree(tree.getRightNode())+")"
+    return s
+tree = binaryTree(7)
+tree.insertLeftNode(6)
+tree.insertRightNode(3)
+tree.left.left = binaryTree(1)
+tree.left.right = binaryTree(2)
+tree.left.left.left = binaryTree(8)
+tree.right.right = binaryTree(4)
+tree.right.left = binaryTree(5)
+tree.right.right.right = binaryTree(9)
+print("TREE is:",printBinaryTree(tree))
+
