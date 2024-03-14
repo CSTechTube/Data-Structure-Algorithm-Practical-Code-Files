@@ -1,0 +1,83 @@
+class BSTNode:
+    def __init__(self,key):
+        self.key = key
+        self.left = None
+        self.right = None
+def insertNode(rootNode,newKey):
+    if rootNode is None:
+        root = BSTNode(newKey)
+        return root
+    if newKey < rootNode.key:
+        rootNode.left = insertNode(rootNode.left,newKey)
+    else:
+        rootNode.right = insertNode(rootNode.right,newKey)
+    return rootNode
+def search(rootNode,searchKey):
+    if rootNode is None or rootNode.key == searchKey:
+        return rootNode
+    if searchKey < rootNode.key:
+        return search(rootNode.left,searchKey)
+    else:
+        return search(rootNode.right,searchKey)
+def inOrderSuccessor(node):
+    current = node
+    while(current.left is not None):
+        current = current.left
+    return current
+def deleteNode(rootNode,deleteKey):
+    if rootNode is None:
+        return rootNode
+    if deleteKey < rootNode.key:
+        rootNode.left = deleteNode(rootNode.left,deleteKey)
+    elif(deleteKey > rootNode.key):
+        rootNode.right = deleteNode(rootNode.right,deleteKey)
+    else:
+        if rootNode.left is None:
+            temp = rootNode.right
+            rooNode = None
+            return temp
+        elif rootNode.right is None:
+            temp = rootNode.left
+            rootNode = None
+            return temp
+        else:
+            temp = inOrderSuccessor(rootNode.right)
+            rootNode.key = temp.key
+            rootNode.right = deleteNode(rootNode.right,temp.key)
+    return rootNode
+def display(rootNode):
+    if rootNode:
+        display(rootNode.left)
+        print(rootNode.key)
+        display(rootNode.right)
+
+r = BSTNode(8)
+r = insertNode(r,3)
+r = insertNode(r,10)
+r = insertNode(r,1)
+r = insertNode(r,6)
+r = insertNode(r,4)
+r = insertNode(r,7)
+r = insertNode(r,14)
+r = insertNode(r,13)
+r = insertNode(r,17)
+
+display(r)
+key = 20
+result = search(r,key)
+if result is None:
+    print(key,"is not found in BST")
+else:
+    print(key,"is there in BST")
+
+delkey = 3
+delResult = deleteNode(r,delkey)
+if delResult is None:
+    print(delkey,"is not found in BST")
+else:
+    print(delkey,"is deleted from BST")
+
+display(r)
+
+
+        
